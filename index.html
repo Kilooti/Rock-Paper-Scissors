@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+</head>
+<body>
+    <script>
+    function getComputerChoice () {
+        let choice = Math.floor(Math.random() * 3); // this tells the function to choose a random number from 0 to a specifec number you choose
+        if (choice === 0) {
+            return "rock";
+        } else if (choice === 1) {
+             return "paper";
+             } else {
+                 return "scissors";
+                }
+            }
+    
+            function getHumanChoice () {
+                let player = prompt("Please choose between Rock, Paper and Scissors: ");
+                return player.toLowerCase(); // this make the words return in small letters.
+            }
+
+            function playGame () {
+                let humanScore = 0;
+                let computerScore = 0;
+
+                function playRound  (humanChoice, computerChoice) {
+                if (humanChoice === "rock" && computerChoice === "scissors") {
+                    humanScore++;
+                    return "You win! Rock beats Scissors.";
+                } else if (humanChoice === "scissors" && computerChoice === "paper") {
+                    humanScore++;
+                    return "You win! Scissors beats Paper.";
+                } else if (humanChoice === "paper" && computerChoice === "rock") {
+                    humanScore++;
+                    return "You win! Paper beats Rock.";
+                } else if (humanChoice === "rock" && computerChoice === "paper") {
+                    computerScore++;
+                    return "You lose! Paper beats Rock.";
+                } else if (humanChoice === "scissors" && computerChoice === "rock") {
+                    computerScore++;
+                    return "You lose! Rock beats Scissors.";
+                } else if (humanChoice === "paper" && computerChoice === "scissors") {
+                    computerScore++;
+                    return "You lose! Scissors beats Paper.";
+                } else if (humanChoice === computerChoice) {
+                    return "Draw! Try again.";
+                } else {
+                    return "Wrong weapon! Try again."
+                }
+            }
+
+                for (i = 0; i <  5; i++) {
+                    const human = getHumanChoice();
+                    const computer = getComputerChoice(); // by adding a variable we can reuse this function without calling it again
+
+                    console.log("Round", i + 1);
+                    console.log("Computer chose:", computer); // here I reused the getComputerChoice function without calling it again.
+                    console.log("Player chose:", human); 
+                    console.log(playRound(human, computer));
+                    console.log("Player:", humanScore, "Computer:", computerScore);
+                }
+
+                if (humanScore > computerScore) {
+                    console.log("You win the game!");
+                } else if (computerScore > humanScore) {
+                    console.log("Computer wins the game!");
+                } else {
+                    console.log("It's a tie overall!");
+                }
+            }
+
+            console.log(playGame ());
+    </script>
+</body>
+</html>
